@@ -25,7 +25,7 @@ public class FeedbackController(
         if (request is null)
             return BadRequest();
 
-        var feedback = new Feedback()
+        var feedback = new Feedback
         {
             FeedbackType = request.FeedbackType,
             MessageTitle = request.MessageTitle,

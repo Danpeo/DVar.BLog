@@ -15,12 +15,15 @@ namespace DVar.BLog.Infrastructure.Migrations
                 name: "Feedbacks",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    FeedbackType = table.Column<int>(type: "INTEGER", nullable: false),
-                    MessageTitle = table.Column<string>(type: "TEXT", nullable: false),
-                    MessageBody = table.Column<string>(type: "TEXT", nullable: false),
-                    FeedbackCratedDateTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UserEmail = table.Column<string>(type: "TEXT", nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    FeedbackType = table.Column<int>(type: "integer", nullable: false),
+                    MessageTitle = table.Column<string>(type: "text", nullable: false),
+                    MessageBody = table.Column<string>(type: "text", nullable: false),
+                    FeedbackCratedDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UserFullName_Surname = table.Column<string>(type: "text", nullable: false),
+                    UserFullName_FirstName = table.Column<string>(type: "text", nullable: false),
+                    UserFullName_MiddleName = table.Column<string>(type: "text", nullable: true),
+                    UserEmail = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,10 +34,10 @@ namespace DVar.BLog.Infrastructure.Migrations
                 name: "FeedbackResponses",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    FeedbackId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Response = table.Column<string>(type: "TEXT", nullable: false),
-                    ResponseDateTime = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    FeedbackId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Response = table.Column<string>(type: "text", nullable: false),
+                    ResponseDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

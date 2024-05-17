@@ -6,9 +6,9 @@ namespace DVar.BLog.Domain.ValueObjects;
 [Owned]
 public class FullName : ValueObject
 {
-    public string Surname { get; }
-    public string FirstName { get; }
-    public string? MiddleName { get; }
+    public string Surname { get; set; } = "";
+    public string FirstName { get; set; } = "";
+    public string? MiddleName { get; set; } = "";
 
     public FullName(string surname, string firstName, string? middleName)
     {

@@ -11,7 +11,7 @@ namespace DVar.BLog.Infrastructure.Repositories;
 public class FeedbackRepository(AppDbContext db) : IFeedbackRepository
 {
     public void Create(Feedback feedback) => db.Feedbacks.Add(feedback);
-
+    
     public async Task<Feedback?> GetAsync(Guid id)
     {
         Feedback? feedback = await GetFeedbackData()
@@ -22,7 +22,9 @@ public class FeedbackRepository(AppDbContext db) : IFeedbackRepository
 
     public async Task<IEnumerable<Feedback>> ListAsync(PaginationParams paginationParams)
     {
-        var feedbacks = await GetFeedbackData().ToListAsync();
+        var feedbacks = await GetFeedbackData()
+            .OrderBy(f => f.FeedbackCratedDateTime)
+            .ToListAsync();
         return feedbacks.Paginate(paginationParams);
     }
 

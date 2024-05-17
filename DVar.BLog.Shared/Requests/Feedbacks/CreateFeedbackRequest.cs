@@ -8,6 +8,6 @@ public class CreateFeedbackRequest
     public FeedbackType FeedbackType { get; set; }
     public string MessageTitle { get; set; } = string.Empty;
     public string MessageBody { get; set; } = string.Empty;
-    public FullName UserFullName { get; set; } = null!;
+    public FullName UserFullName { get; set; } = new();
     public string UserEmail { get; set; } = string.Empty;
 }

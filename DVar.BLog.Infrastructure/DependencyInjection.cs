@@ -16,11 +16,12 @@ public static class DependencyInjection
     )
     {
         services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlite(configuration.GetConnectionString("Sqlite"))
+            options.UseNpgsql(configuration.GetConnectionString("PostgresSql"))
         );
         services.AddTransient<IEmailService, EmailService>();
 
         services.AddScoped<IFeedbackRepository, FeedbackRepository>();
+        services.AddScoped<IFeedbackResponseRepository, FeedbackResponseRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         
         
