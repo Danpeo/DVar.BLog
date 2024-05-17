@@ -1,0 +1,13 @@
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\bin\Debug\net8.0\DVar.BLog.Domain.deps.json
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\bin\Debug\net8.0\DVar.BLog.Domain.dll
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\bin\Debug\net8.0\DVar.BLog.Domain.pdb
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\obj\Debug\net8.0\DVar.BLog.Domain.csproj.AssemblyReference.cache
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\obj\Debug\net8.0\DVar.BLog.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\obj\Debug\net8.0\DVar.BLog.Domain.AssemblyInfoInputs.cache
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\obj\Debug\net8.0\DVar.BLog.Domain.AssemblyInfo.cs
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\obj\Debug\net8.0\DVar.BLog.Domain.csproj.CoreCompileInputs.cache
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\obj\Debug\net8.0\DVar.BLog.Domain.dll
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\obj\Debug\net8.0\refint\DVar.BLog.Domain.dll
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\obj\Debug\net8.0\DVar.BLog.Domain.pdb
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\obj\Debug\net8.0\ref\DVar.BLog.Domain.dll
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Domain\obj\Debug\net8.0\DVar.BLog.Domain.sourcelink.json

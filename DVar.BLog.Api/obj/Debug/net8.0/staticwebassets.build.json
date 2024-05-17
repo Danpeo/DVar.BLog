@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "iTFcF9IGypqvmHpGZZdCSy4ZbKPMgs1QvwvUIcD8goM=",
+  "Source": "DVar.BLog.Api",
+  "BasePath": "_content/DVar.BLog.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,67 @@
+@page "/Admin-Panel"
+@using System.Globalization
+@using DVar.Blog.App.Api
+@using DVar.BLog.Domain.Entities
+
+<PageTitle>Обратная связь</PageTitle>
+
+<h3 class="fs-1">Панель администратора</h3>
+
+@if (_feedbacks is null)
+{
+    <DisplayLoading/>
+}
+else if (!_feedbacks.Any())
+{
+    <Message Text="Нет сообщений по обратной связи!!!"/>
+}
+else
+{
+    @foreach (var feedback in _feedbacks)
+    {
+        <div class="card card-flip">
+            <div class="card-header">
+                @feedback.MessageTitle
+            </div>
+            <div class="card-body">
+                <p class="card-text" style="word-break:break-all;">@feedback.MessageBody</p>
+                <p>
+                    <strong>Тип обратной связи:</strong> @feedback.GetFeedbackTypeByText()
+                </p>
+                <p>
+                    <strong>Пользователь:</strong> @feedback.UserFullName.Surname @feedback.UserFullName.FirstName @feedback.UserFullName.MiddleName
+                </p>
+                <p>
+                    <strong>Email:</strong> @feedback.UserEmail
+                </p>
+                <p>
+                    <strong>Отправлено:</strong> @feedback.FeedbackCratedDateTime.ToLocalTime().ToString(CultureInfo.CurrentCulture)
+                </p>
+            </div>
+            <button class="btn btn-primary" @onclick="() => _showFeedbackResponseForm = !_showFeedbackResponseForm">
+                @(!_showFeedbackResponseForm ? "Показать форму для ответа" : "Скрыть форму для ответа")
+            </button>
+            @if (_showFeedbackResponseForm)
+            {
+                <p>safsdfsdf</p>
+            }
+        </div>
+    }
+}
+
+@code {
+    [Inject] public FeedbackApi FeedbackApi { get; set; } = null!;
+    private List<Feedback>? _feedbacks;
+    private bool _showFeedbackResponseForm;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _feedbacks = await FeedbackApi.ListFeedbacksAsync();
+        }
+        catch (HttpRequestException e)
+        {
+        }
+    }
+}

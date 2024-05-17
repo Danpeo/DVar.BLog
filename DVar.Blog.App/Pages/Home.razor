@@ -1,0 +1,75 @@
+﻿@page "/"
+@using DVar.Blog.App.Api
+@using DVar.BLog.Domain.Enumerations
+@using DVar.BLog.Shared.Requests.Feedbacks
+
+<PageTitle>Обратная связь</PageTitle>
+
+<h1 class="fs-1">Обратная связь</h1>
+
+<EditForm Model="_request" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+    <FormSection Title="Данные отправителя" HelpText="Введите ФИО и Email">
+        <FormFieldSet LabelFor="surname" Label="Фамилия">
+            <InputText @bind-Value="_request.UserFullName.Surname"
+                       class="form-control bg-main txt-green-dim jap-font no-border"
+                       id="surname"/>
+        </FormFieldSet>
+        <FormFieldSet LabelFor="firsName" Label="Имя">
+            <InputText @bind-Value="_request.UserFullName.FirstName"
+                       class="form-control bg-main txt-green-dim jap-font no-border"
+                       id="firsName"/>
+        </FormFieldSet>
+        <FormFieldSet LabelFor="firsName" Label="Отчество">
+            <InputText @bind-Value="_request.UserFullName.MiddleName"
+                       class="form-control bg-main txt-green-dim jap-font no-border"
+                       id="middleName"/>
+        </FormFieldSet>
+        <FormFieldSet LabelFor="email" Label="Email">
+            <InputText @bind-Value="_request.UserEmail"
+                       class="form-control bg-main txt-green-dim jap-font no-border"
+                       id="email"/>
+        </FormFieldSet>
+    </FormSection>
+    <FormSection Title="Сообщение для связи" HelpText="Введите ваше сообщение для обратной связи">
+        <FormFieldSet Label="Тип сообщения" LabelFor="">
+            <InputSelect @bind-Value="_request.FeedbackType" class="form-control bg-main txt-green-dim no-border" id="characterType">
+                <option value="@FeedbackType.BugReport">Ошибка</option>
+                <option value="@FeedbackType.Proposal">Предложение</option>
+            </InputSelect>
+        </FormFieldSet>
+        <FormFieldSet LabelFor="messageTitle" Label="Заголовок сообщения">
+            <InputText @bind-Value="_request.MessageTitle"
+                       class="form-control bg-main txt-green-dim jap-font no-border"
+                       id="messageTitle"/>
+        </FormFieldSet>
+        <FormFieldSet LabelFor="messageBody" Label="Тело сообщения">
+            <textarea @bind="_request.MessageBody" rows="8" cols="50" class="form-control bg-main txt-green-dim jap-font no-border" id="messageBody"></textarea>
+
+        </FormFieldSet>
+    </FormSection>
+
+    <FormSubmitButtonContainer OnReset="@(() => _request = new CreateFeedbackRequest())"/>
+
+</EditForm>
+
+@code
+{
+    [Inject] public FeedbackApi FeedbackApi { get; set; } = null!;
+
+    private CreateFeedbackRequest _request = new();
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            await FeedbackApi.CreateFeedbackAsync(_request);
+        }
+        catch (HttpRequestException e)
+        {
+        }
+    }
+
+    private void HandleInvalidSubmit()
+    {
+    }
+}

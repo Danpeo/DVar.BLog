@@ -1,0 +1,67 @@
+@page "/Feedback-Responses"
+@using System.Globalization
+@using DVar.Blog.App.Api
+@using DVar.BLog.Domain.Entities
+
+<PageTitle>Ответы на обратную связь</PageTitle>
+
+<h3 class="fs-1">Ответы на обратную связь</h3>
+
+@if (_feedbackResponses is null)
+{
+    <DisplayLoading/>
+}
+else if (!_feedbackResponses.Any())
+{
+    <Message Text="Нет ответов!!!"/>
+}
+else
+{
+    @foreach (var feedbackResponse in _feedbackResponses)
+    {
+        <div class="card card-flip">
+            <div class="card-header">
+                @feedbackResponse.Feedback.MessageTitle
+            </div>
+            <div class="card-body">
+                <p class="card-text" style="word-break:break-all;">@feedbackResponse.Feedback.MessageBody</p>
+                <p>
+                    <strong>Тип обратной связи:</strong> @feedbackResponse.Feedback.GetFeedbackTypeByText()
+                </p>
+                <p>
+                    <strong>Пользователь:</strong> @feedbackResponse.Feedback.UserFullName.Surname @feedbackResponse.Feedback.UserFullName.FirstName @feedbackResponse.Feedback.UserFullName.MiddleName
+                </p>
+                <p>
+                    <strong>Email:</strong> @feedbackResponse.Feedback.UserEmail
+                </p>
+                <p>
+                    <strong>Отправлено:</strong> @feedbackResponse.Feedback.FeedbackCratedDateTime.ToLocalTime().ToString(CultureInfo.CurrentCulture)
+                </p>
+                <p class="fs-3">
+                    <strong>ОТВЕТ:</strong> @feedbackResponse.Response
+                </p>
+                <p class="fs-3">
+                    <strong>ДАТА ОТВЕТА:</strong> @feedbackResponse.ResponseDateTime.ToLocalTime().ToString(CultureInfo.CurrentCulture)
+                </p>
+            </div>
+
+        </div>
+    }
+}
+
+@code {
+    [Inject] public FeedbackResponseApi FeedbackResponseApi { get; set; } = null!;
+    private List<FeedbackResponse>? _feedbackResponses;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _feedbackResponses = await FeedbackResponseApi.ListFeedbacksAsync();
+        }
+        catch (HttpRequestException e)
+        {
+        }
+    }
+
+}
