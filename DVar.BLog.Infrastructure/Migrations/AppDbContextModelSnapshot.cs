@@ -51,6 +51,25 @@ namespace DVar.BLog.Infrastructure.Migrations
                     b.ToTable("Feedbacks");
                 });
 
+            modelBuilder.Entity("DVar.BLog.Domain.Entities.FeedbackProcessing", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("DueDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("FeedbackId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeedbackId");
+
+                    b.ToTable("FeedbackProcessings");
+                });
+
             modelBuilder.Entity("DVar.BLog.Domain.Entities.FeedbackResponse", b =>
                 {
                     b.Property<Guid>("Id")
@@ -102,6 +121,17 @@ namespace DVar.BLog.Infrastructure.Migrations
 
                     b.Navigation("UserFullName")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DVar.BLog.Domain.Entities.FeedbackProcessing", b =>
+                {
+                    b.HasOne("DVar.BLog.Domain.Entities.Feedback", "Feedback")
+                        .WithMany()
+                        .HasForeignKey("FeedbackId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Feedback");
                 });
 
             modelBuilder.Entity("DVar.BLog.Domain.Entities.FeedbackResponse", b =>

@@ -18,8 +18,10 @@ public class FeedbackResponseController(
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateFeedbackResponseRequest? request)
     {
-        if (request is null)
-            return BadRequest();
+        if (request is null || !ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
         var feedback = await feedbackRepository.GetAsync(request.FeedbackId);
 
@@ -49,6 +51,11 @@ public class FeedbackResponseController(
     public async Task<IActionResult> ListAsync([FromQuery] PaginationParams paginationParams)
     {
         var feedbackResponses = await feedbackResponseRepository.ListAsync(paginationParams);
-        return Ok(feedbackResponses);
+        if (feedbackResponses.Any())
+        {
+            return Ok(feedbackResponses);
+        }
+
+        return NotFound();
     }
 }

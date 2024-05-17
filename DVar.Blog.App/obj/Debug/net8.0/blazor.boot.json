@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "DVar.Blog.App",
   "resources": {
-    "hash": "sha256-LiAAm+IJ0aF3tGmcotRYPVGJ9Jw/JxB1IOwKeDLZRwI=",
+    "hash": "sha256-OrMXMCO9khjCgqmgNET10CZk9PhyIaeT4gpfpfc6zrY=",
     "jsModuleNative": {
       "dotnet.native.8.0.5.jqknxkm6rm.js": "sha256-boyHe+0RMZDkzBKGhsrnXPhPg3oZ6UqJnTUzngJPjNY="
     },
@@ -216,14 +216,14 @@
       "mscorlib.wasm": "sha256-XvLAB5IyfVSmj5aaGnPwgVFaaZz8jXmbN8WmeopiPBM=",
       "netstandard.wasm": "sha256-TbMssdnuTiKq1gjTPkpgROAuWN0uhvPnagvWR+wAgNs=",
       "System.Private.CoreLib.wasm": "sha256-sscg+Efk8ROPq+q4IVmhShzITuoOYvB8Bsc+Mp9vcSM=",
-      "DVar.BLog.Domain.wasm": "sha256-0Pk0Zba2cLAOOmnsMmvQDIy6RGMiDjzO+fcSZ4IQznE=",
-      "DVar.BLog.Shared.wasm": "sha256-2qeJjkLq7oj0Yw+sN9KtEIWgXGhAtyfiitMSNfcKxvM=",
-      "DVar.Blog.App.wasm": "sha256-aIUb0R+ezO2zD+R7Kt5ugvq50dZ4nIQbTMhtiiCQEe4="
+      "DVar.BLog.Domain.wasm": "sha256-+Vdp1dnN3WqnLu7hu/poTkfVcfRvVoWAEyei2Fzr04E=",
+      "DVar.BLog.Shared.wasm": "sha256-lvLCWHYuCyFugm2FXqdN8Rd7HDiobnyFbxFVRoX6Xf8=",
+      "DVar.Blog.App.wasm": "sha256-gg3JfkPEA3qOO/Ef68FD1NSPnIY3guUzkPCNq7qxrOc="
     },
     "pdb": {
-      "DVar.BLog.Shared.pdb": "sha256-EjSRK1nLSJRqdOF0Z9N6Bkc8PWp9cU6auDDB/0b8wbs=",
-      "DVar.BLog.Domain.pdb": "sha256-CQ5tkjeuveVErqAkUhXT+yxyvLXmVe/3Cm4dQriY0Kk=",
-      "DVar.Blog.App.pdb": "sha256-HF+pl+eowepHGwoGJbKDbPzZ+TOC358gr9swy4pT9ws="
+      "DVar.BLog.Shared.pdb": "sha256-kq+P0c0XyGUIVZHb1H4CMp3YribW5SZkyAlbjG5NzOs=",
+      "DVar.BLog.Domain.pdb": "sha256-Uu5TMFMVuepcF3LoPCNq5JfMKAeGdTW7LS4wX6GL47c=",
+      "DVar.Blog.App.pdb": "sha256-IKPEuyrieNuPKnvE4eFtttF9zLBZTWnttvdBnI8GeMw="
     }
   },
   "cacheBootResources": true,

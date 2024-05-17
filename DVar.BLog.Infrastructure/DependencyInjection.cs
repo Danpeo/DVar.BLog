@@ -22,6 +22,7 @@ public static class DependencyInjection
 
         services.AddScoped<IFeedbackRepository, FeedbackRepository>();
         services.AddScoped<IFeedbackResponseRepository, FeedbackResponseRepository>();
+        services.AddScoped<IFeedbackProcessingRepository, FeedbackProcessingRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         
         

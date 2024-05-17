@@ -1,7 +1,8 @@
 @page "/Admin-Panel"
 @using System.Globalization
 @using DVar.Blog.App.Api
-@using DVar.BLog.Domain.Entities
+@using DVar.BLog.Shared.Requests.Feedbacks
+@using DVar.BLog.Shared.Responses
 
 <PageTitle>Обратная связь</PageTitle>
 
@@ -38,12 +39,44 @@ else
                     <strong>Отправлено:</strong> @feedback.FeedbackCratedDateTime.ToLocalTime().ToString(CultureInfo.CurrentCulture)
                 </p>
             </div>
+            <EditForm Model="_feedbackProcessing" OnValidSubmit="() => HandleAddingProcessingAsync(feedback.Id)">
+                <input class="form-control bg-main txt-green-dim jap-font no-border" type="datetime-local" id="taskDateTime" name="taskDateTime" @bind="_feedbackProcessing.DueDateTime">
+                <div class="mt-2 mb-2">
+                    <div class="row">
+                        <div class="offset-4 col-8 text-right">
+                            <button class="btn btn-primary animated-blink-bg txt-dark" type="submit">Задать дату обработки</button>
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
             <button class="btn btn-primary" @onclick="() => _showFeedbackResponseForm = !_showFeedbackResponseForm">
                 @(!_showFeedbackResponseForm ? "Показать форму для ответа" : "Скрыть форму для ответа")
             </button>
             @if (_showFeedbackResponseForm)
             {
-                <p>safsdfsdf</p>
+                <EditForm Model="_feedbackResponse" OnValidSubmit="() => HandleSubmitResponse(feedback.Id)" OnInvalidSubmit="HandleInvalidSubmitResponse">
+                    <FormSection Title="Ответ на обратную связь" HelpText="">
+                        <FormFieldSet LabelFor="feedbackResponse" Label="Сообщение для пользователя">
+                            <InputText @bind-Value="_feedbackResponse.Response"
+                                       class="form-control bg-main txt-green-dim jap-font no-border"
+                                       id="feedbackResponse"/>
+                        </FormFieldSet>
+                    </FormSection>
+                    @if (_showLoading)
+                    {
+                        <p class="fs-3 fw-bold">ЗАГРУЗКА...</p>
+                    }
+
+                    @if (_submitSuccessful)
+                    {
+                        <SuccessAlertAlt Message="Обратная связь успешно отправлена!"/>
+                    }
+                    else if (_errorMessage is not null)
+                    {
+                        <ErrorAlertAlt Message="@_errorMessage"/>
+                    }
+                    <FormSubmitButtonContainer OnReset="@(() => _feedbackResponse = new CreateFeedbackResponseRequest())"/>
+                </EditForm>
             }
         </div>
     }
@@ -51,8 +84,15 @@ else
 
 @code {
     [Inject] public FeedbackApi FeedbackApi { get; set; } = null!;
-    private List<Feedback>? _feedbacks;
+    [Inject] public FeedbackResponseApi FeedbackResponseApi { get; set; } = null!;
+    [Inject] public FeedbackProcessingApi FeedbackProcessingApi { get; set; } = null!;
+    private List<FeedbackResponse_>? _feedbacks;
     private bool _showFeedbackResponseForm;
+    private CreateFeedbackResponseRequest _feedbackResponse = new();
+    private CreateFeedbackProcessingRequest _feedbackProcessing = new();
+    private bool _submitSuccessful;
+    private string? _errorMessage;
+    private bool _showLoading;
 
     protected override async Task OnInitializedAsync()
     {
@@ -62,6 +102,43 @@ else
         }
         catch (HttpRequestException e)
         {
+            _errorMessage = e.Message;
         }
     }
+
+    private async Task HandleSubmitResponse(Guid feedbackId)
+    {
+        try
+        {
+            _showLoading = true;
+            _feedbackResponse.FeedbackId = feedbackId;
+            await FeedbackResponseApi.CreateFeedbackResponseAsync(_feedbackResponse);
+            _submitSuccessful = true;
+            _showLoading = false;
+        }
+        catch (HttpRequestException e)
+        {
+            _errorMessage = e.Message;
+        }
+    }
+
+    private void HandleInvalidSubmitResponse()
+    {
+        _showLoading = false;
+        _submitSuccessful = false;
+    }
+
+    private async Task HandleAddingProcessingAsync(Guid feedbackId)
+    {
+        try
+        {
+            _feedbackProcessing.FeedbackId = feedbackId;
+            await FeedbackProcessingApi.CreateFeedbackProcessingAsync(_feedbackProcessing);
+        }
+        catch (HttpRequestException e)
+        {
+            _errorMessage = e.Message;
+        }
+    }
+
 }

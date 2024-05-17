@@ -1,0 +1,64 @@
+@page "/Feedback-Processings"
+@using System.Globalization
+@using DVar.Blog.App.Api
+@using DVar.BLog.Shared.Responses
+
+<PageTitle>Обработка обратной связи</PageTitle>
+
+<h3 class="fs-1">Обработка обратной связи</h3>
+
+@if (_feedbackProcessings is null)
+{
+    <DisplayLoading/>
+}
+else if (!_feedbackProcessings.Any())
+{
+    <Message Text="Нет ответов!!!"/>
+}
+else
+{
+    @foreach (var feedbackProcessingResponse in _feedbackProcessings)
+    {
+        <div class="card card-flip">
+            <div class="card-header">
+                @feedbackProcessingResponse.Feedback.MessageTitle
+            </div>
+            <div class="card-body">
+                <p class="card-text" style="word-break:break-all;">@feedbackProcessingResponse.Feedback.MessageBody</p>
+                <p>
+                    <strong>Тип обратной связи:</strong> @feedbackProcessingResponse.Feedback.GetFeedbackTypeByText()
+                </p>
+                <p>
+                    <strong>Пользователь:</strong> @feedbackProcessingResponse.Feedback.UserFullName.Surname @feedbackProcessingResponse.Feedback.UserFullName.FirstName @feedbackProcessingResponse.Feedback.UserFullName.MiddleName
+                </p>
+                <p>
+                    <strong>Email:</strong> @feedbackProcessingResponse.Feedback.UserEmail
+                </p>
+                <p>
+                    <strong>Отправлено:</strong> @feedbackProcessingResponse.Feedback.FeedbackCratedDateTime.ToLocalTime().ToString(CultureInfo.CurrentCulture)
+                </p>
+                <p class="fs-3">
+                    <strong>УСТАНОВЛЕННАЯ ДАТА РАбОТЫ:</strong> @feedbackProcessingResponse.DueDateTime.ToLocalTime().ToString(CultureInfo.CurrentCulture)
+                </p>
+            </div>
+
+        </div>
+    }
+}
+
+@code {
+    [Inject] public FeedbackProcessingApi FeedbackProcessingApi { get; set; } = null!;
+    private List<FeedbackProcessingResponse>? _feedbackProcessings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _feedbackProcessings = await FeedbackProcessingApi.ListFeedbackProcessingsAsync();
+        }
+        catch (HttpRequestException e)
+        {
+        }
+    }
+
+}

@@ -12,7 +12,7 @@ public class Feedback : Entity
     public DateTime FeedbackCratedDateTime { get; set; } = DateTime.UtcNow;
     public FullName UserFullName { get; set; } = null!;
     public string UserEmail { get; set; } = string.Empty;
-
+    
     public string GetFeedbackTypeByText()
     {
         return FeedbackType switch

@@ -47,6 +47,20 @@
 
         </FormFieldSet>
     </FormSection>
+    
+    @if (_showLoading)
+    {
+        <p class="fs-3 fw-bold">ЗАГРУЗКА...</p>
+    }
+    
+    @if (_submitSuccessful)
+    {
+        <SuccessAlertAlt Message="Обратная связь успешно отправлена!"/>
+    }
+    else if (_errorMessage is not null)
+    {
+        <ErrorAlertAlt Message="@_errorMessage"/>
+    }
 
     <FormSubmitButtonContainer OnReset="@(() => _request = new CreateFeedbackRequest())"/>
 
@@ -57,19 +71,28 @@
     [Inject] public FeedbackApi FeedbackApi { get; set; } = null!;
 
     private CreateFeedbackRequest _request = new();
+    private bool _submitSuccessful;
+    private string? _errorMessage;
+    private bool _showLoading;
 
     private async Task HandleSubmit()
     {
         try
         {
+            _showLoading = true;
             await FeedbackApi.CreateFeedbackAsync(_request);
+            _submitSuccessful = true;
+            _showLoading = false;
         }
         catch (HttpRequestException e)
         {
+            _errorMessage = e.Message;
         }
     }
 
     private void HandleInvalidSubmit()
     {
+        _showLoading = false;
+        _submitSuccessful = false;
     }
 }

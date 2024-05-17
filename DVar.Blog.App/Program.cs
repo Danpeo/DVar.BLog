@@ -12,6 +12,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 
 builder.Services.AddScoped<FeedbackApi>();
 builder.Services.AddScoped<FeedbackResponseApi>();
+builder.Services.AddScoped<FeedbackProcessingApi>();
 builder.Services.AddBlazorBootstrap();
 
 

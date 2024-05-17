@@ -7,6 +7,7 @@ public class AppDbContext : DbContext
 {
     public DbSet<Feedback> Feedbacks { get; set; }
     public DbSet<FeedbackResponse> FeedbackResponses { get; set; }
+    public DbSet<FeedbackProcessing> FeedbackProcessings { get; set; }
 
     public AppDbContext(DbContextOptions options) : base(options)
     {

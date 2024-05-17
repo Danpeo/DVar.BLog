@@ -1,7 +1,7 @@
 @page "/Feedback-Responses"
 @using System.Globalization
 @using DVar.Blog.App.Api
-@using DVar.BLog.Domain.Entities
+@using DVar.BLog.Shared.Responses
 
 <PageTitle>Ответы на обратную связь</PageTitle>
 
@@ -51,13 +51,13 @@ else
 
 @code {
     [Inject] public FeedbackResponseApi FeedbackResponseApi { get; set; } = null!;
-    private List<FeedbackResponse>? _feedbackResponses;
+    private List<FeedbackResponseResponse>? _feedbackResponses;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            _feedbackResponses = await FeedbackResponseApi.ListFeedbacksAsync();
+            _feedbackResponses = await FeedbackResponseApi.ListFeedbackResponsesAsync();
         }
         catch (HttpRequestException e)
         {
