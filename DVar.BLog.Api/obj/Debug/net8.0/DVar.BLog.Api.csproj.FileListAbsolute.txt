@@ -140,3 +140,5 @@ C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Api\bin\Debug\net8.0\MimeKit.dl
 C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Api\obj\Debug\net8.0\DVar.BLog.Api.sourcelink.json
 C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Api\bin\Debug\net8.0\Npgsql.dll
 C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Api\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\danil\RiderProjects\DVar.BLog\DVar.BLog.Api\bin\Debug\net8.0\Telegram.Bot.dll

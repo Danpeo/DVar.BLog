@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UNPgV27XLA4cO/m82PUMNGJLAdb2gryezar4M3khflW6pQfBZlBzZXswSTb2Nqp14/C9JQR2V1Ddjliy7iHWPA==",
+  "dgSpecHash": "XDixRD7FOtROU1pnrXgrGV5FahNrnb054nMd2Ucw5m9O1fxXlcyWQd1APpVWmc2hCaHJLToOuK+toJUPOU0jUA==",
   "success": true,
   "projectFilePath": "C:\\Users\\danil\\RiderProjects\\DVar.BLog\\DVar.BLog.Api\\DVar.BLog.Api.csproj",
   "expectedPackageFiles": [
@@ -41,6 +41,7 @@
     "C:\\Users\\danil\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mimekit\\4.5.0\\mimekit.4.5.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\npgsql\\8.0.3\\npgsql.8.0.3.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.4\\npgsql.entityframeworkcore.postgresql.8.0.4.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.6\\sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
@@ -68,7 +69,8 @@
     "C:\\Users\\danil\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\danil\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
-    "C:\\Users\\danil\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512"
+    "C:\\Users\\danil\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
+    "C:\\Users\\danil\\.nuget\\packages\\telegram.bot\\19.0.0\\telegram.bot.19.0.0.nupkg.sha512"
   ],
   "logs": []
 }

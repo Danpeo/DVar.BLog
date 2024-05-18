@@ -3,6 +3,7 @@ using DVar.BLog.Domain.Params;
 using DVar.BLog.Domain.RepositoryAbstractions;
 using DVar.BLog.Infrastructure.Data;
 using DVar.BLog.Infrastructure.Emails;
+using DVar.BLog.Infrastructure.Telegram;
 using DVar.BLog.Shared.Requests.Feedbacks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -14,6 +15,7 @@ public class FeedbackController(
     IFeedbackRepository feedbackRepository,
     IUnitOfWork unitOfWork,
     IEmailService emailService,
+    TelegramService telegramService,
     IOptions<AdminParams> adminParamsOptions) : Controller
 {
 
@@ -38,8 +40,12 @@ public class FeedbackController(
         feedbackRepository.Create(feedback);
         if (await unitOfWork.CompleteAsync())
         {
+            string messageBody = $"{request.MessageBody}";
             await emailService.SendEmailAsync($"{_adminParams.AdminEmail}", $"[{request.MessageTitle}]",
-                $"{request.MessageBody}");
+                messageBody);
+
+            await telegramService.SendMessageAsync(messageBody);
+            
             return Ok(feedback.Id);
         }
 
