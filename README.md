@@ -9,6 +9,9 @@
 ### При отправке, админу приходит уведомление на почту
 ![Форма обратной связи](https://github.com/Danpeo/DVar.BLog/blob/main/img/Screenshot_1.png)
 
+### Также в telegram боте приходит сообщение
+![Телеграм сообщение](https://github.com/Danpeo/DVar.BLog/blob/main/img/Screenshot_10.png)
+
 ### Админ может дать ответ на обратную связь
 ![Форма обратной связи](https://github.com/Danpeo/DVar.BLog/blob/main/img/Screenshot_3.png)
 
@@ -20,3 +23,5 @@
 
 ### Настройки appsettings.json в DVar.BLog.Api
 ![Форма обратной связи](https://github.com/Danpeo/DVar.BLog/blob/main/img/Screenshot_8.png)
+
+Для того чтобы получать уведомления в боте, нужно указать chat id, token менять не нужно. Чтобы получить chat id, в браузере ввести https://api.telegram.org/bot7116269176:AAFOikAK0LkXZp9vMA0ELEe6oZHGu7pwI9A/getUpdates и отравить сообщение боту https://t.me/DVarBLogBot
